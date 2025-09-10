@@ -1,0 +1,317 @@
+:root {
+    --primary-bg: #0a0a0a;
+    --secondary-bg: #1a1a1a;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --accent: #4f46e5;
+    --accent-hover: #6366f1;
+    --gradient: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(99, 102, 241, 0.1));
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--primary-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 20% 80%, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff, #b0b0b0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Skills Tree Container */
+.skills-tree-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    overflow-x: auto;
+    padding: 2rem 0;
+}
+
+.skills-tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-width: 1200px;
+    padding: 2rem;
+}
+
+/* Central Hub */
+.skills-hub {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 4rem;
+    position: relative;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.skills-hub:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(79, 70, 229, 0.3);
+}
+
+.skills-hub h3 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Tree Branches */
+.skills-branches {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6rem;
+    width: 100%;
+    position: relative;
+}
+
+/* Branch Categories */
+.skill-branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.branch-header {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.branch-header:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 30px rgba(79, 70, 229, 0.2);
+}
+
+.branch-header h4 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Skill Nodes */
+.skill-nodes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+    max-width: 280px;
+}
+
+.skill-node {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-node::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.skill-node:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 5px 20px rgba(79, 70, 229, 0.15);
+}
+
+.skill-node:hover::before {
+    left: 100%;
+}
+
+.skill-node span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+}
+
+/* Connection Lines */
+.connection-line {
+    position: absolute;
+    background: linear-gradient(90deg, var(--glass-border), var(--accent), var(--glass-border));
+    height: 2px;
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+/* Vertical lines from hub to branches */
+.hub-to-branch {
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(180deg, var(--accent), var(--glass-border));
+}
+
+/* Horizontal line connecting all branches */
+.branch-connector {
+    top: 160px;
+    left: 16.66%;
+    width: 66.68%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--glass-border), var(--accent), var(--glass-border));
+}
+
+/* Individual branch lines */
+.branch-line {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--accent), var(--glass-border));
+    position: absolute;
+    top: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .skills-tree {
+        min-width: 900px;
+    }
+
+    .skills-branches {
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-tree {
+        min-width: 700px;
+    }
+
+    .skills-branches {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .skill-nodes {
+        grid-template-columns: 1fr;
+        max-width: 200px;
+    }
+
+    .branch-connector {
+        display: none;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Skill node animation delays */
+.skill-node:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.skill-node:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.skill-node:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.skill-node:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.skill-node:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.skill-node:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.skill-branch.animated .skill-node {
+    animation: fadeInUp 0.6s ease-out both;
+}

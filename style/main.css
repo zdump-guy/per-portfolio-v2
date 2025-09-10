@@ -1,0 +1,545 @@
+:root {
+    --primary-bg: #0a0a0a;
+    --secondary-bg: #1a1a1a;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --accent: #4f46e5;
+    --accent-hover: #6366f1;
+    --gradient: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(99, 102, 241, 0.1));
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--primary-bg);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Background Animation */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 20% 80%, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    padding: 0.75rem 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    transition: var(--transition);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--text-primary);
+}
+
+/* Sections */
+section {
+    min-height: 100vh;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 8rem 0 4rem;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff, #b0b0b0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero .subtitle {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.hero .description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.cta-button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+/* Glass Cards */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff, #b0b0b0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Skills Tree Container */
+.skills-tree-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    overflow-x: auto;
+    padding: 2rem 0;
+}
+
+.skills-tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-width: 1200px;
+    padding: 2rem;
+}
+
+/* Central Hub */
+.skills-hub {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 4rem;
+    position: relative;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.skills-hub:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(79, 70, 229, 0.3);
+}
+
+.skills-hub h3 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Tree Branches */
+.skills-branches {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6rem;
+    width: 100%;
+    position: relative;
+}
+
+/* Branch Categories */
+.skill-branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.branch-header {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.branch-header:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 30px rgba(79, 70, 229, 0.2);
+}
+
+.branch-header h4 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Skill Nodes */
+.skill-nodes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+    max-width: 280px;
+}
+
+.skill-node {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-node::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.skill-node:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 5px 20px rgba(79, 70, 229, 0.15);
+}
+
+.skill-node:hover::before {
+    left: 100%;
+}
+
+.skill-node span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+}
+
+/* Connection Lines */
+.connection-line {
+    position: absolute;
+    background: linear-gradient(90deg, var(--glass-border), var(--accent), var(--glass-border));
+    height: 2px;
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+/* Vertical lines from hub to branches */
+.hub-to-branch {
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(180deg, var(--accent), var(--glass-border));
+}
+
+/* Horizontal line connecting all branches */
+.branch-connector {
+    top: 160px;
+    left: 16.66%;
+    width: 66.68%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--glass-border), var(--accent), var(--glass-border));
+}
+
+/* Individual branch lines */
+.branch-line {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--accent), var(--glass-border));
+    position: absolute;
+    top: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Certificates Section */
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.certificate-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.cert-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.cert-button:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--secondary-bg);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.social-link {
+    width: 50px;
+    height: 50px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Skill node animation delays */
+.skill-node:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.skill-node:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.skill-node:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.skill-node:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.skill-node:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.skill-node:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.skill-node:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.skill-node:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+.skill-branch.animated .skill-node {
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .skills-tree {
+        min-width: 900px;
+    }
+
+    .skills-branches {
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        top: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    nav ul {
+        gap: 1rem;
+    }
+
+    nav a {
+        font-size: 0.8rem;
+    }
+
+    section {
+        padding: 0 1rem;
+    }
+
+    .hero {
+        padding: 6rem 0 4rem;
+    }
+
+    .skills-tree {
+        min-width: 700px;
+    }
+
+    .skills-branches {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .skill-nodes {
+        grid-template-columns: 1fr;
+        max-width: 200px;
+    }
+
+    .branch-connector {
+        display: none;
+    }
+
+    .certificates-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-links {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul {
+        gap: 0.5rem;
+    }
+
+    .glass-card {
+        padding: 1.5rem;
+    }
+}
